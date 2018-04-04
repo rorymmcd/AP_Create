@@ -21,4 +21,13 @@ public class Board {
 				(squares[x][y+2].shipID!=-1)||
 				(squares[x][y+3].shipID!=-1)))return false;
 	}
+	
+	public char[][] getShipMap(){
+		char[][] map = new char[10][10];
+		for(int x = 0; x <10; x++)
+			for(int y = 0; y < 10; y++){
+				
+			}
+		return map;
+	}
 }
