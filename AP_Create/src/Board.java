@@ -1,9 +1,11 @@
 
 public class Board {
 	private Square[][] squares;
+	public int numHit;
 	
 	public Board(){
 		squares = new Square[10][10];
+		for(int i=0;i<10;i++)for(int j=0;j<10;j++)squares[i][j]=new Square();
 	}
 	
 	public boolean setShip(int x,int y,int o){
@@ -12,21 +14,43 @@ public class Board {
 		if(!(o==0||o==1))return false;
 		if(o==0&&x>6)return false;
 		if(o==1&&y>6)return false;
-		if(o==0&&((squares[x][y].shipID!=-1)||
-				(squares[x+1][y].shipID!=-1)||
-				(squares[x+2][y].shipID!=-1)||
-				(squares[x+3][y].shipID!=-1)))return false;
-		if(o==1&&((squares[x][y].shipID!=-1)||
-				(squares[x][y+1].shipID!=-1)||
-				(squares[x][y+2].shipID!=-1)||
-				(squares[x][y+3].shipID!=-1)))return false;
+		if(o==0&&((squares[y][x].shipID!=-1)||
+				(squares[y][x+1].shipID!=-1)||
+				(squares[y][x+2].shipID!=-1)||
+				(squares[y][x+3].shipID!=-1)))return false;
+		if(o==1&&((squares[y][x].shipID!=-1)||
+				(squares[y+1][x].shipID!=-1)||
+				(squares[y+2][x].shipID!=-1)||
+				(squares[y+3][x].shipID!=-1)))return false;
+		if(o==0){
+			squares[y][x].Set(0, 0);
+			squares[y][x+1].Set(0, 1);
+			squares[y][x+2].Set(0, 1);
+			squares[y][x+3].Set(0, 2);
+			return true;
+		}
+		if(o==1){
+			squares[y][x].Set(0, 3);
+			squares[y+1][x].Set(0, 4);
+			squares[y+2][x].Set(0, 4);
+			squares[y+3][x].Set(0, 5);
+			return true;
+		}
+		return false;
 	}
 	
 	public char[][] getShipMap(){
 		char[][] map = new char[10][10];
-		for(int x = 0; x <10; x++)
-			for(int y = 0; y < 10; y++){
-				
+		for(int y = 0; y <10; y++)
+			for(int x = 0; x < 10; x++){
+				int part = squares[y][x].shipPart;
+				if(part == -1)map[y][x] = '#';
+				if(part == 0)map[y][x] = '<';
+				if(part == 1)map[y][x] = '=';
+				if(part == 2)map[y][x] = '>';
+				if(part == 3)map[y][x] = '^';
+				if(part == 4)map[y][x] = 'H';
+				if(part == 5)map[y][x] = 'V';
 			}
 		return map;
 	}
