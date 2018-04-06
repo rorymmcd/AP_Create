@@ -39,6 +39,16 @@ public class Board {
 		return false;
 	}
 	
+	public int shoot(int x,int y){
+		//return conditions: 0 already shot, 1 hit 2 miss
+		if(squares[y][x].beenHit)return 0;
+		squares[y][x].beenHit = true;
+		if(squares[y][x].shipID==-1)return 2;
+		numHit++;
+		return 1;
+		
+	}
+	
 	public char[][] getShipMap(){
 		char[][] map = new char[10][10];
 		for(int y = 0; y <10; y++)
