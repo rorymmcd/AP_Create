@@ -64,4 +64,17 @@ public class Board {
 			}
 		return map;
 	}
+	
+	public char[][] getShotsMap(){
+		char[][] map = new char[10][10];
+		for(int y = 0; y <10; y++)
+			for(int x = 0; x < 10; x++){
+				if(squares[y][x].beenHit){
+					if(squares[y][x].shipID==-1) map[y][x] = '#';
+					else map[y][x] = 'X';
+				}
+				else map[y][x] = '?';
+			}
+		return map;
+	}
 }
