@@ -27,6 +27,7 @@ public class AP_Create {
 				System.out.println("Invalid position");
 		}
 		printMap(bp.getShipMap());
+		int winner = 0;
 		while (bp.numHit < 12 && bc.numHit < 12) {
 			int shotSuccess;
 			do {
@@ -39,6 +40,11 @@ public class AP_Create {
 			if(shotSuccess==1)System.out.println("HIT!");
 			else System.out.println("MISS");
 			printMap(bc.getShotsMap());
+			if(bc.numHit==12){
+				System.out.println("YOU WIN!!");
+				break;
+			}
+			
 		}
 	}
 
