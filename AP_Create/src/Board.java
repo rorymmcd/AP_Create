@@ -77,4 +77,9 @@ public class Board {
 			}
 		return map;
 	}
+	
+	public boolean isTargetValid(int x, int y){
+		if(x<0 || y<0 || x>9 || y>9)return false;
+		return !squares[y][x].beenHit;
+	}
 }
