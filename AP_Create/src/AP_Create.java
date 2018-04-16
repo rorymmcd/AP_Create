@@ -36,7 +36,7 @@ public class AP_Create {
 				System.out.print("Y-Coordinate of Target");
 				int y = scan.nextInt();
 				shotSuccess = bc.shoot(x, y);
-			} while (shotSuccess != 0);
+			} while (shotSuccess == 0);
 			if(shotSuccess==1)System.out.println("HIT!");
 			else System.out.println("MISS");
 			printMap(bc.getShotsMap());
@@ -44,7 +44,12 @@ public class AP_Create {
 				System.out.println("YOU WIN!!");
 				break;
 			}
-			
+			comp.takeShot(bp);
+			if(bp.numHit==12){
+				System.out.println("YOU LOOSE!!");
+				break;
+			}
+			printMap(bp.getShotsMap());
 		}
 	}
 
