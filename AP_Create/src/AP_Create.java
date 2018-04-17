@@ -29,16 +29,17 @@ public class AP_Create {
 		printMap(bp.getShipMap());
 		int winner = 0;
 		while (bp.numHit < 12 && bc.numHit < 12) {
-			int shotSuccess;
+			int shotSuccess = 0;
 			do {
-				System.out.print("X-Coordinate of Target");
+				System.out.print("X-Coordinate of Target:");
 				int x = scan.nextInt();
-				System.out.print("Y-Coordinate of Target");
+				System.out.print("Y-Coordinate of Target:");
 				int y = scan.nextInt();
-				shotSuccess = bc.shoot(x, y);
+				if(bc.isTargetValid(x, y))shotSuccess = bc.shoot(x, y);
 			} while (shotSuccess == 0);
 			if(shotSuccess==1)System.out.println("HIT!");
 			else System.out.println("MISS");
+			System.out.println("Your Move:");
 			printMap(bc.getShotsMap());
 			if(bc.numHit==12){
 				System.out.println("YOU WIN!!");
@@ -49,15 +50,19 @@ public class AP_Create {
 				System.out.println("YOU LOOSE!!");
 				break;
 			}
-			printMap(bp.getShotsMap());
+			System.out.println("Computer Move:");
+			printMap(bp.getAllMap());
 		}
 	}
 
 	public static void printMap(char[][] m) {
+		System.out.println(" 0 1 2 3 4 5 6 7 8 9");
+		int i = 0;
 		for (char[] q : m) {
+			System.out.print(i++);
 			for (char c : q)
-				System.out.print(c);
-			System.out.println();
+				System.out.print(c+" ");
+			System.out.println(/*"\n"*/);
 		}
 	}
 }
