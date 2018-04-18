@@ -13,7 +13,7 @@ public class AP_Create {
 		bc = new Board();
 		comp = new Computer(bc);
 		comp.placeShips();
-		printMap(bc.getShipMap());
+		//printMap(bc.getShipMap());
 		for (int i = 0; i < 3;) {
 			System.out.print("Enter X position:");
 			int x = scan.nextInt();
